@@ -31,7 +31,8 @@ const Employee = () => {
     switch (action) {
       case "create":
         if (employeeForm.firstName) {
-          const apiPost = `http://localhost:3000/create_employee`;
+          debugger;
+          const apiPost = `${process.env.REACT_APP_BASE_URL}create_employee`;
 
           const employeePostData = {
             first_name: employeeForm.firstName,
@@ -47,7 +48,7 @@ const Employee = () => {
         break;
       case "update":
         if (employeeForm.firstName) {
-          const apiPut = `http://localhost:3000/update_employee`;
+          const apiPut = `${process.env.REACT_APP_BASE_URL}update_employee`;
 
           const employeePutData = {
             first_name: employeeForm.firstName,
@@ -61,7 +62,7 @@ const Employee = () => {
         }
         break;
       case "read":
-        const employeeGetApi = `http://localhost:3000/get_employee?first_name=${employeeForm.firstName}`;
+        const employeeGetApi = `${process.env.REACT_APP_BASE_URL}get_employee?first_name=${employeeForm.firstName}`;
         const requestEmployeeData = await axios.get(employeeGetApi);
 
         const employeeData = requestEmployeeData?.data;
@@ -74,7 +75,7 @@ const Employee = () => {
         });
         break;
       case "delete":
-        const employeeDelete = `http://localhost:3000/delete_employee?first_name=${employeeForm.firstName}`;
+        const employeeDelete = `${process.env.REACT_APP_BASE_URL}delete_employee?first_name=${employeeForm.firstName}`;
         const response = await axios.delete(employeeDelete);
 
         const result = response?.data;
